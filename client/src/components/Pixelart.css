@@ -9,6 +9,8 @@
 :root {
   --main-bg-color: brown;
   --pixel-bg-color: #ffffff;
+  --gridsizeH:800px;
+  --gridsizeW:800px;
 }
 
 *{
@@ -24,7 +26,7 @@ html, body{
 
 .navbar, .container{
   background-color: rgb(255, 255, 255);
-  width: 800px;
+  width: 100%;
   border-radius: 1px;
 }
 .navbar{
@@ -47,7 +49,7 @@ html, body{
 
 .container{
   --size: 4;
-  height: 800px;
+  height: var(--gridsizeH);
   display: grid;
   grid-template-columns: repeat(var(--size), 1fr);
   grid-template-rows: repeat(var(--size), 1fr);

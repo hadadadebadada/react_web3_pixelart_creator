@@ -7,9 +7,10 @@ import "./App.css";
 import React, { Component, useState } from "react";
 import SimpleStorageContract from "./contracts/SimpleStorage.json";
 import getWeb3 from "./getWeb3";
-
+import Navbar2 from "./components/navbar/Navbar2"
 import Pixelart from "./components/Pixelart";
 import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 import Animations from "./components/Animations"
 
@@ -20,7 +21,7 @@ class App extends Component{
    // this.ref = React.createRef()
   }
   state = { storageValue: 0, web3: null, accounts: null, contract: null, value: "adsd", image: "" };
-/* 
+
   componentDidMount = async () => {
     try {
       // Get network provider and web3 instance.
@@ -50,7 +51,7 @@ class App extends Component{
     }
 
 
-  } */
+  }
 
   runExample = async () => {
     const { accounts, contract } = this.state;
@@ -62,10 +63,35 @@ class App extends Component{
     return <>
     <div>
 
-    
+    <Router>
+
+<Navbar2 />
+
+<Routes>
+
+
+
+  <Route exact path='/services' />
+
+  <Route exact path='/employeelist' ></Route>
+
+  <Route exact path='/login'  />
+  <Route exact path='/myBookings'  />
+  <Route exact path='/home' />
+  <Route exact path='/adminbooking' ></Route>
+
+</Routes>
+
+</Router>
+
+    <div>
+      
+    </div>
+    {/* <Animations></Animations> */}
+
     <Pixelart></Pixelart>
 
-    {/* <Animations></Animations> */}
+    
     
     </div>
 

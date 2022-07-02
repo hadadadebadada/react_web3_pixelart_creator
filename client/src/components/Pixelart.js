@@ -10,9 +10,14 @@ class Pixelart extends Component {
     super(props);
 
     this.state = {
-      colorPicker: "#ffffff"
+      colorPicker: "#ffffff",
+      width: window.innerWidth, 
+      height: window.innerHeight
     };
-   
+
+    this.width = this.updateDimensions.bind(this)
+    this.height = this.updateDimensions.bind(this)
+
   }
   componentDidMount() {
 
@@ -27,11 +32,18 @@ class Pixelart extends Component {
     let eraserBtn = document.querySelector('.eraserBtn')
 
 
-    this.setState({ colorPicker: color.value }, () => {
+    this.setState({ colorPicker: color.value, width: window.innerWidth, height: window.innerHeight}, () => {
+
+  
 
       function populate(size) {
 
         container.style.setProperty('--size', size)
+
+
+
+       /*  container.style.setProperty("--gridsizeH","400px")
+        container.style.setProperty("--gridsizeW","400px") */
 
         for (let i = 0; i < size * size; i++) {
           let div = document.createElement('div')
@@ -65,10 +77,17 @@ class Pixelart extends Component {
             div.style.setProperty("--main-bg-color", color.value);
 
           })
+        /*   document.querySelector('.container').setProperty("--gridsizeH",this.state.height)
+          document.querySelector('.container').setProperty("--gridsizeW",this.state.width) */
 
+       /*    this.setState({width: window.innerWidth, height: window.innerHeight}, () => {
+            console.log("hi")
+          }) */
+         
           container.appendChild(div)
         }
       }
+
 
 
 
@@ -78,6 +97,7 @@ class Pixelart extends Component {
       window.addEventListener("mouseup", function () {
         draw = false
       })
+
 
       function reset() {
         container.innerHTML = ''
@@ -105,9 +125,21 @@ class Pixelart extends Component {
 
       console.log(url) //  base64 
 
-      /* document.querySelector("#container2").appendChild(canvas); */
+      
     });
   }
+
+  updateDimensions = () => {
+    this.setState({ width: window.innerWidth, height: window.innerHeight});
+    
+  
+
+};
+
+/* setContainerSize(){
+  document.querySelector('.container').setProperty("--gridsizeH","400px")
+  document.querySelector('.container').setProperty("--gridsizeW","400px") 
+} */
 
   render() {
     return <div className="Appi">
@@ -115,11 +147,21 @@ class Pixelart extends Component {
       <div className="navbar">
         <button className="btn">Reset</button>
         <button className="eraserBtn">Eraser</button>
+       
         <input type="color" valueDefault="#00eeff" id="color" class="color"></input>
-        <input type="number" value="64" class="size"></input>
+        <input type="number" value="32" class="size"></input>
      </div>
 
-      <div className="container" id="container"></div>
+
+     <p>{this.state.width<400 ? (     
+       
+       
+       <div style={{height:"400px", width:"400px"}}className="container" id="container"></div>
+
+
+) : <div style={{height:"800px", width:"800px"}}className="container" id="container"></div> }</p>
+
+   
 
       <button onClick={this.appendScreenshot}>Load Canvas</button>
 

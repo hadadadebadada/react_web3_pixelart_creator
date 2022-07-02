@@ -743,7 +743,7 @@
   "sourceMap": "66:191:0:-:0;;;109:1;93:17;;66:191;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "66:191:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;188:67;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;115:69;;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;188:67;242:8;234:5;:16;;;;188:67;:::o;115:69::-;152:7;174:5;;167:12;;115:69;:::o;88:117:1:-;197:1;194;187:12;334:77;371:7;400:5;389:16;;334:77;;;:::o;417:122::-;490:24;508:5;490:24;:::i;:::-;483:5;480:35;470:63;;529:1;526;519:12;470:63;417:122;:::o;545:139::-;591:5;629:6;616:20;607:29;;645:33;672:5;645:33;:::i;:::-;545:139;;;;:::o;690:329::-;749:6;798:2;786:9;777:7;773:23;769:32;766:119;;;804:79;;:::i;:::-;766:119;924:1;949:53;994:7;985:6;974:9;970:22;949:53;:::i;:::-;939:63;;895:117;690:329;;;;:::o;1025:118::-;1112:24;1130:5;1112:24;:::i;:::-;1107:3;1100:37;1025:118;;:::o;1149:222::-;1242:4;1280:2;1269:9;1265:18;1257:26;;1293:71;1361:1;1350:9;1346:17;1337:6;1293:71;:::i;:::-;1149:222;;;;:::o",
   "source": "// SPDX-License-Identifier: MIT\npragma solidity >=0.4.22 <0.9.0;\n\ncontract SimpleStorage {\n  uint256 value = 1;\n\n  function read() public view returns (uint256) {\n    return value;\n  }\n\n  function write(uint256 newValue) public {\n    value = newValue;\n  }\n}\n",
-  "sourcePath": "/home/bruh/Desktop/solidity_projects/crypto_pixel_art_creator/truffle/contracts/SimpleStorage.sol",
+  "sourcePath": "/home/brate/Desktop/pixelart_creator/react_web3_pixelart_creator/truffle/contracts/SimpleStorage.sol",
   "ast": {
     "absolutePath": "project:/contracts/SimpleStorage.sol",
     "exportedSymbols": {
@@ -1028,12 +1028,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x34989Bb2411894ED5160a5bb14b076ec723310CF",
-      "transactionHash": "0xd0ec704901112a95900e8acced3968146172d8baadfd43cd3b7223bdbb2de831"
+      "address": "0x99B0f113433FC03845baD92269B5AdF32ab3502b",
+      "transactionHash": "0x3a5a31bab8eb5d3ef5f002a0ae9b8718f7be456b93fca301f8929bf474fca638"
     }
   },
-  "schemaVersion": "3.4.7",
-  "updatedAt": "2022-06-28T17:21:54.171Z",
+  "schemaVersion": "3.4.8",
+  "updatedAt": "2022-07-02T16:09:14.402Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
