@@ -57,7 +57,6 @@ function Navbar2() {
 
                             MINT YOUR OWN PIXELART 
 
-                            <img style={{ height: 40, width: 40 }} src={tableIcon} alt="Desksharing Logo" />
 
                         </NavLogo>
                         <MobileIcon onClick={handleClick}>

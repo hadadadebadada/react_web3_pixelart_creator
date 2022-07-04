@@ -26,11 +26,10 @@ class Pixelart extends Component {
     let draw = false
     let container = document.querySelector('.container')
     let sizeEl = document.querySelector(".size");
-    let size = sizeEl.value
+    let size = 32
     const color = document.querySelector('.color')
     let resetBtn = document.querySelector('.btn')
     let eraserBtn = document.querySelector('.eraserBtn')
-
 
     this.setState({ colorPicker: color.value, width: window.innerWidth, height: window.innerHeight}, () => {
 
@@ -38,6 +37,7 @@ class Pixelart extends Component {
 
       function populate(size) {
 
+       
         container.style.setProperty('--size', size)
 
 
@@ -142,6 +142,8 @@ class Pixelart extends Component {
 } */
 
   render() {
+
+    let myWidth = this.state.width*0.95
     return <div className="Appi">
 
       <div className="navbar">
@@ -149,14 +151,14 @@ class Pixelart extends Component {
         <button className="eraserBtn">Eraser</button>
        
         <input type="color" valueDefault="#00eeff" id="color" class="color"></input>
-        <input type="number" value="32" class="size"></input>
+        {/* <input type="number" value="32" class="size"></input> */}
      </div>
 
 
-     <p>{this.state.width<400 ? (     
+     <p>{this.state.width<800 ? (     
        
        
-       <div style={{height:"400px", width:"400px"}}className="container" id="container"></div>
+       <div style={{height:myWidth, width:myWidth}}className="container" id="container"></div>
 
 
 ) : <div style={{height:"800px", width:"800px"}}className="container" id="container"></div> }</p>

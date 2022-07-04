@@ -11,7 +11,7 @@ import Navbar2 from "./components/navbar/Navbar2"
 import Pixelart from "./components/Pixelart";
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-
+import Footer from './components/footer/Footer'
 import Animations from "./components/Animations"
 
 class App extends Component{
@@ -87,7 +87,7 @@ class App extends Component{
     <div>
       
     </div>
-    {/* <Animations></Animations> */}
+    <Animations></Animations>
 
     <Pixelart></Pixelart>
 
@@ -95,6 +95,9 @@ class App extends Component{
     
     </div>
 
+<Router>
+  <Footer></Footer>
+</Router>
 
     </>
   }

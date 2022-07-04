@@ -17,7 +17,7 @@
     "web3": "^1.7.3"
   },
   "scripts": {
-    "start": "react-scripts --openssl-legacy-provider start",
+    "start": "react-scripts start",
     "dev": "NODE_OPTIONS=--openssl-legacy-provider next dev",
     "build": "NODE_OPTIONS=--openssl-legacy-provider next build && next export",
     "test": "react-scripts test",
