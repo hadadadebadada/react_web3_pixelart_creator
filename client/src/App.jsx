@@ -13,6 +13,7 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Footer from './components/footer/Footer'
 import Animations from "./components/Animations"
+import TorusTunnel from "./components/TorusTunnel";
 
 class App extends Component{
   
@@ -92,7 +93,7 @@ class App extends Component{
     <Pixelart></Pixelart>
 
     
-    
+    {/* <TorusTunnel></TorusTunnel> */}
     </div>
 
 <Router>

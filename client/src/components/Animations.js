@@ -1,14 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import * as THREE from "three"
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import "./Pixelart.css"
 
+import AOS from "aos"
+import "aos/dist/aos.css"
 class Animations extends Component {
 
     state = { width: window.innerWidth, height: window.innerHeight, halfWidth: window.innerWidth / 2 };
 
 
     componentDidMount() {
+
+    
+          
+
         const scene = new THREE.Scene();
 
         const canvas = document.querySelector('#c');
@@ -62,6 +68,7 @@ class Animations extends Component {
 
             cube.rotation.x += 0.01
             cube.rotation.y += 0.01
+            AOS.init({ duration:1500 });
 
             render()
         }
@@ -83,6 +90,10 @@ class Animations extends Component {
     };
 
 
+
+
+    
+
     render() {
         return (
 
@@ -98,7 +109,8 @@ class Animations extends Component {
                 }}
             >
 
-                <div style={{
+                <div styl
+                e={{
                     justifyContent: 'right',
                     alignItems: 'right',
 
@@ -108,21 +120,44 @@ class Animations extends Component {
                 }}>
 
 
-
                     <div class="bg-gray-500 hover:bg-red-600 ..."
                         style={{ borderRadius: '25px' }}
                     >asdasdasdasdasdasd</div>
 
-                    <p style={{ color: 'green' }}>Window size: {this.state.width} x {this.state.height} </p>
-                    <p style={{ color: 'red' }}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
 
-                    </p>
-                    <p style={{ color: 'red' }}>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <p style={{ color: 'red' }}> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                    <p style={{ color: 'red' }}>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+<h1>
 
-                    <p style={{ color: 'red' }}> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+
+<div 
+          style={{
+            margin: 20,
+            marginTop: 15,
+            marginLeft: '0vh', // für media screen
+            backgroundColor: 'black',
+            overflow: 'hidden',
+            height: 50,
+            width: '100%',
+            maxHeight: '35vh',
+            borderRadius: 15
+
+
+          }} 
+
+          data-aos="flip-left"
+        >
+<p style={{ color: 'green' }}>Window size: {this.state.width} x {this.state.height} </p>
+            </div>
+
+            <div data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="90">
+            <p style={{ color: 'red' }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</p>
+
+            </div>
+
+                    <p style={{ color: 'yellow' }}>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p style={{ color: 'black' }}> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                    <p style={{ color: 'green' }}>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+{/*                     <p style={{ color: 'red' }}> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+ */}</h1>
 
                 </div>
 
