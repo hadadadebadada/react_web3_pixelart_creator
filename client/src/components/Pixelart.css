@@ -1,10 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .Appi {
   text-align: center;
-  background-color: blueviolet;
+  background-color: #101522;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+    flex-direction: column;
 }
 :root {
   --main-bg-color: brown;

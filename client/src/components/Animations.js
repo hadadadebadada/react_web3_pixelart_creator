@@ -2,19 +2,27 @@ import React, { Component } from 'react';
 import * as THREE from "three"
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import "./Pixelart.css"
-
+import AOS from 'aos';
+import "aos/dist/aos.css"
+import Typed from 'react-typed'
+import Title from '../globalStyles'
 class Animations extends Component {
 
     state = { width: window.innerWidth, height: window.innerHeight, halfWidth: window.innerWidth / 2 };
 
 
     componentDidMount() {
+        AOS.init({
+            duration: 1200,
+        });
+
         const scene = new THREE.Scene();
 
         const canvas = document.querySelector('#c');
         const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
         renderer.setPixelRatio(window.devicePixelRatio);
-
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFShadowMap;
         const canvasContainer = document.querySelector('#divR');
 
         renderer.setSize(canvasContainer.offsetWidth, canvasContainer.offsetHeight);
@@ -29,9 +37,9 @@ class Animations extends Component {
         const controls = new OrbitControls(camera, canvas)
 
         controls.target.set(0, 0, 0);
-        controls.enableDamping = true;
-        controls.enableRotate = true;
-        controls.enableZoom = true;
+        controls.enableDamping = false;
+        controls.enableRotate = false;
+        controls.enableZoom = false;
         controls.update();
 
         const geometry = new THREE.BoxGeometry()
@@ -51,17 +59,33 @@ class Animations extends Component {
             camera.updateProjectionMatrix()
             renderer.setSize(window.innerWidth, window.innerHeight)
             console.log("resize fired")
-  
-            window.location.reload();
-         
+
+            // window.location.refresh();
+            // window.location.reload();
+
             render()
+
+        }
+
+        function resize() {
+            var width = renderer.domElement.clientWidth;
+            var height = renderer.domElement.clientHeight;
+            renderer.setSize(width, height, false);
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
         }
 
         function animate() {
+            resize();
+
             requestAnimationFrame(animate)
 
             cube.rotation.x += 0.01
             cube.rotation.y += 0.01
+
+            renderer.clearDepth();
+            renderer.render(scene, camera);
+            camera.layers.set(0);
 
             render()
         }
@@ -93,7 +117,7 @@ class Animations extends Component {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    backgroundColor: 'blueviolet'
+                    backgroundColor: '#101522'
                     /*  height: '800hv' */
                 }}
             >
@@ -109,20 +133,47 @@ class Animations extends Component {
 
 
 
-                    <div class="bg-gray-500 hover:bg-red-600 ..."
-                        style={{ borderRadius: '25px' }}
-                    >asdasdasdasdasdasd</div>
+                    <div class="md:container md:mx-auto bg-current rounded shadow border p-8 m-10 hover:bg-red-668 ..."
+                        data-aos="fade-down"
+                        style={{
+                            borderRadius: '5px'
+                            ,
+                            display: 'flex',
+                            /* backgroundColor:'#101522', */
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            height: this.state.height / 3,
+                            width: this.state.width / 1.5
+                        }}
+                    >
+                        <h1 style={{
+                            color:"orange",
+                            fontWeight:"bold",
+                            fontSize:"200%"
+                        }}>
+                            
+                                    <Typed 
+        className="typed-text"
+        strings={["Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", 
+      "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+      ]}
+        typeSpeed={30}
+        backSpeed={8}
+        ></Typed>
+                        </h1>
+                   
+                    </div>
 
-                    <p style={{ color: 'green' }}>Window size: {this.state.width} x {this.state.height} </p>
-                    <p style={{ color: 'red' }}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
 
-                    </p>
-                    <p style={{ color: 'red' }}>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+
+                    {/* <p style={{ color: 'red' }}>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     <p style={{ color: 'red' }}> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
                     <p style={{ color: 'red' }}>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 
-                    <p style={{ color: 'red' }}> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                    <p style={{ color: 'red' }}> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p> */}
 
                 </div>
 
@@ -156,7 +207,7 @@ class Animations extends Component {
 
                     }}
                 >
-                    <canvas id='c'></canvas>
+                    <canvas style={{ overflow : 'scroll'}} id='c'></canvas>
                 </div>)}
 
                 <div>

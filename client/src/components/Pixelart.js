@@ -28,8 +28,8 @@ class Pixelart extends Component {
     let sizeEl = document.querySelector(".size");
     let size = 32
     const color = document.querySelector('.color')
-    let resetBtn = document.querySelector('.btn')
-    let eraserBtn = document.querySelector('.eraserBtn')
+    let resetBtn = document.querySelector('#btn')
+    let eraserBtn = document.querySelector('#eraserBtn')
 
     this.setState({ colorPicker: color.value, width: window.innerWidth, height: window.innerHeight}, () => {
 
@@ -146,9 +146,18 @@ class Pixelart extends Component {
     let myWidth = this.state.width*0.95
     return <div className="Appi">
 
-      <div className="navbar">
-        <button className="btn">Reset</button>
-        <button className="eraserBtn">Eraser</button>
+      <div className="navbar"
+             style={{
+              backgroundColor:"#101522"
+          }}
+      >
+
+        <button id="btn" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-4 px-10 border border-blue-500 hover:border-transparent rounded"><p style={{fontWeight:'bold', fontSize:'200%'}}>Reset</p></button>
+        {/* <button className="btn">Reset</button> */}
+        <div style={{
+          width:'30px'
+        }}></div>
+        <button id="eraserBtn" class="bg-transparent hover:bg-red-500 text-blue-700 font-semibold hover:text-white py-4 px-10 border border-blue-500 hover:border-transparent rounded"><p style={{fontWeight:'bold', fontSize:'200%'}}>Eraser</p></button>
        
         <input type="color" valueDefault="#00eeff" id="color" class="color"></input>
         {/* <input type="number" value="32" class="size"></input> */}
@@ -175,4 +184,4 @@ class Pixelart extends Component {
   }
 }
 
-export default Pixelart;
+export default Pixelart;         

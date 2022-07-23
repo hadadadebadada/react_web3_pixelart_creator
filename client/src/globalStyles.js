@@ -9,6 +9,21 @@ const GlobalStyle = createGlobalStyle`
  } 
 `;
 
+export const TagLine = styled.span`
+    color: ${props => props.theme.tagLineColor};
+    font-size: 18px;
+    transition: all .5s ease;
+    align-items:center;
+`;
+
+export const Title = styled.h2`
+      justify-content: center;
+  align-items: center;
+  color: palevioletred;
+    transition: all .5s ease;
+   
+`;
+
 export const Container = styled.div`
   z-index: 1;
   width: 100%;

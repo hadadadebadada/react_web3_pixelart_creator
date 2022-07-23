@@ -49,8 +49,8 @@ function Footer() {
         <FooterLinksWrapper>
           <FooterLinkItems>
             <FooterLinkTitle>About Us</FooterLinkTitle>
-            <FooterLink to='/sign-up'>How it works</FooterLink>
-            <FooterLink to='/'>Testimonials</FooterLink>
+{/*             <FooterLink to='/sign-up'>How it works</FooterLink>
+ */}            <FooterLink to='/'>Testimonials</FooterLink>
             <FooterLink to='/'>Careers</FooterLink>
             <FooterLink to='/'>Investors</FooterLink>
             <FooterLink to='/'>Terms of Service</FooterLink>
@@ -71,9 +71,9 @@ function Footer() {
             <FooterLink to='/'>Agency</FooterLink>
             <FooterLink to='/'>Influencer</FooterLink>
           </FooterLinkItems>
-          <FooterLinkItems>
-            <FooterLinkTitle>Social Media</FooterLinkTitle>
-            <FooterLink to='/'>Instagram</FooterLink>
+          <FooterLinkItems>              
+          <FooterLinkTitle>Social Media</FooterLinkTitle>
+
             <FooterLink to='/'>Facebook</FooterLink>
             <FooterLink to='/'>Youtube</FooterLink>
             <FooterLink to='/'>Twitter</FooterLink>
@@ -85,11 +85,11 @@ function Footer() {
           <SocialLogo to='/'>
 
             <img style={{ height: 40, width: 40 }} src={tableIcon} alt="Desksharing Logo" />
-            DESKSHARING
+            MINTING
             <img style={{ height: 40, width: 40 }} src={tableIcon} alt="Desksharing Logo" />
 
           </SocialLogo>
-          <WebsiteRights>DESKSHARING © 2022</WebsiteRights>
+          <WebsiteRights>PIXELART MINT © 2022</WebsiteRights>
           <SocialIcons>
             <SocialIconLink href='/' target='_blank' aria-label='Facebook'>
               <FaFacebook />

@@ -105,9 +105,9 @@ Module not found: Can't resolve '../Wrapper' in '/home/brate/Desktop/pixelart_cr
                                         <h1>ABOUT</h1>
                                 </NavLinks>
                             </NavItem>
-                            <NavItem>
+                {/*             <NavItem>
                                 
-                  {/*               {
+                                {
                                     username == "admin" ?
 
                                         <bg to='/adminbooking' onClick={closeMobileMenu}>
@@ -117,10 +117,10 @@ Module not found: Can't resolve '../Wrapper' in '/home/brate/Desktop/pixelart_cr
                                             </FormattedMessage>
                                             <h1>KEIN PLAN</h1>
                                         </NavLinks> : <h1></h1>
-                                } */}
+                                }
 
 
-                            </NavItem>
+                            </NavItem> */}
                             <NavItemBtn>
                                 {button ? (
                                     <NavBtnLink to='/login'>
