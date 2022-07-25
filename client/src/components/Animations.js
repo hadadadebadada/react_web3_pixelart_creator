@@ -133,13 +133,13 @@ class Animations extends Component {
 
 
 
-                    <div class="md:container md:mx-auto bg-current rounded shadow border p-8 m-10 hover:bg-red-668 ..."
+                    <div class="md:container md:mx-auto bg-red-666 rounded shadow border p-8 m-10 ..."
                         data-aos="fade-down"
                         style={{
                             borderRadius: '5px'
                             ,
                             display: 'flex',
-                            /* backgroundColor:'#101522', */
+                            backgroundColor:'#101522',
                             justifyContent: 'center',
                             alignItems: 'center',
                             height: this.state.height / 3,
@@ -147,7 +147,7 @@ class Animations extends Component {
                         }}
                     >
                         <h1 style={{
-                            color:"orange",
+                            color:"white",
                             fontWeight:"bold",
                             fontSize:"200%"
                         }}>

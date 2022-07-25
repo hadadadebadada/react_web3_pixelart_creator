@@ -10,12 +10,14 @@ import getWeb3 from "./getWeb3";
 import Navbar2 from "./components/navbar/Navbar2"
 import Pixelart from "./components/Pixelart";
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import Footer from './components/footer/Footer'
 import Animations from "./components/Animations"
 import TestTailwind from "./components/TestTailwind";
 import Home from "./components/Home"
+import StartScreen from "./components/StartScreen";
 import TorusTunnel from "./components/TorusTunnel";
+import Login from "./components/Login";
 class App extends Component {
 
   constructor(props) {
@@ -39,7 +41,7 @@ class App extends Component {
   //     const deployedNetwork = SimpleStorageContract.networks[networkId];
   //     const instance = new web3.eth.Contract(
   //       SimpleStorageContract.abi,
-  //       deployedNetwork && deployedNetwork.address,
+  //       deployed Network && deployedNetwork.address,
   //     );
 
   //     // Set web3, accounts, and contract to the state, and then proceed with an
@@ -65,27 +67,30 @@ class App extends Component {
   render() {
     return <>
       <div
-             style={{
-              backgroundColor:"#101529"
-          }}
+        style={{
+          backgroundColor: "#101529"
+        }}
       >
-
+ 
         <Router>
 
           <Navbar2 />
 
           <Routes>
 
+          <Route path="/" element={<Navigate replace to="/home" />} />
 
 
             <Route exact path='/services' />
 
             <Route exact path='/employeelist' ></Route>
-         
 
-            <Route path='/login' element={<TorusTunnel/>}/>
+
+            <Route path='/login' element={<TorusTunnel />} />
+            <Route path='/login2' element={<Login />} />
+
             <Route exact path='/myBookings' />
-            <Route exact path='/home' />
+            <Route exact path='/home' element={<StartScreen/>}/>
             <Route exact path='/adminbooking' ></Route>
 
           </Routes>
@@ -95,14 +100,14 @@ class App extends Component {
         <div>
 
         </div>
-        <Animations></Animations>
+{/*         <Animations></Animations>
 
         <Pixelart></Pixelart>
 
 
         <Home></Home>
-        <TestTailwind></TestTailwind>
-{/*         <TorusTunnel></TorusTunnel>
+        <TestTailwind></TestTailwind> */}
+        {/*         <TorusTunnel></TorusTunnel>Navigate
  */}      </div>
 
       <Router>

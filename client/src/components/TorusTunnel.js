@@ -43,26 +43,32 @@ class TorusTunnel extends Component {
     // document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 
     scene.add(camera);
-    //renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(window.innerWidth, window.innerHeight);
     //$container.append(renderer.domElement);
     //document.body.appendChild(renderer.domElement);
 
     renderer.setPixelRatio(window.devicePixelRatio);
-    const canvasContainer = document.querySelector('#divL');
-    renderer.setSize(canvasContainer.offsetWidth, canvasContainer.offsetHeight);
+    /*     const canvasContainer = document.querySelector('#divL');
+        renderer.setSize(canvasContainer.offsetWidth, canvasContainer.offsetHeight);
+    
+        let aspect = canvasContainer.offsetWidth / canvasContainer.offsetHeight */
+    /*    const controls = new OrbitControls(camera, document.querySelector("#ca"));
+       controls.target.set(0, 0, 0);
+       controls.enableDamping = false;
+       controls.enableRotate = false;
+       controls.enableZoom = false;
+       controls.update(); */
+    /*     document.body.appendChild( renderer.domElement );
+     */
 
-    let aspect = canvasContainer.offsetWidth / canvasContainer.offsetHeight
-    const controls = new OrbitControls(camera, document.querySelector("#ca"));
-    controls.target.set(0, 0, 0);
-    controls.enableDamping = false;
-    controls.enableRotate = false;
-    controls.enableZoom = false;
-    controls.update();
 
+    let torusDivContainer = document.querySelector('#torusDiv')
+    /* document.querySelector('torusDiv').appendChild(renderer.domElement) */
+    torusDivContainer.appendChild(renderer.domElement)
 
     // 
-    window.addEventListener('resize', onWindowResize, false);
-    /////////////////////////////////////////
+    /*     window.addEventListener('resize', onWindowResize, false);
+     */    /////////////////////////////////////////
 
 
     var normalMaterial = new THREE.MeshNormalMaterial({});
@@ -83,7 +89,7 @@ class TorusTunnel extends Component {
 
     GLTFloader.setCrossOrigin("true");
     // let tableIcon = null;
-
+<div style={{ position: "relative", marginTop:"50%" }}></div>
 
     let tableIcon = new THREE.Mesh();
 
@@ -116,7 +122,7 @@ class TorusTunnel extends Component {
           glb.scene.position.y = 5; */
 
       //glb.scene.scale.set(0.015,0.015,0.015);
-      glb.scene.position.z = 70;
+      glb.scene.position.z = 30;
       glb.scene.position.x = 0.01;
       glb.scene.position.y = 0.01;
 
@@ -205,36 +211,36 @@ class TorusTunnel extends Component {
     let windowHalfX = 0;
 
     let windowHalfY = 0;
-    function onWindowResize() {
+    /*   function onWindowResize() {
+  
+        windowHalfX = window.innerWidth / 2;
+        windowHalfY = window.innerHeight / 2;
+  
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+  
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      } */
 
-      windowHalfX = window.innerWidth / 2;
-      windowHalfY = window.innerHeight / 2;
+    /*     function onDocumentMouseMove(event) {
+          mouseX = (event.clientX - windowHalfX);
+          mouseY = (event.clientY - windowHalfY);
+        }
+     */
 
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    }
-
-    function onDocumentMouseMove(event) {
-      mouseX = (event.clientX - windowHalfX);
-      mouseY = (event.clientY - windowHalfY);
-    }
-
-
-    const tween1 = new TWEEN.Tween({ x: 0, y: 0, z: 200 }).to({
+    const tween1 = new TWEEN.Tween({ x: 0, y: 0, z: 70 }).to({
       x: -
         0, y: 0, z: -68
-    }, 20000).onUpdate(function (object) {
+    }, 10000).onUpdate(function (object) {
       camera.position.set(object.x, object.y, object.z);
     })
 
 
     tween1.start();
-    function onDocumentMouseMove(event) {
-      mouseX = (event.clientX - windowHalfX);
-      mouseY = (event.clientY - windowHalfY);
-    }
+    /*     function onDocumentMouseMove(event) {
+          mouseX = (event.clientX - windowHalfX);
+          mouseY = (event.clientY - windowHalfY);
+        } */
     // Render
     function animate() {
 
@@ -263,30 +269,31 @@ class TorusTunnel extends Component {
 
     animate();
 
-/*     Element.prototype.remove = function() {
-      this.parentElement.removeChild(this);
-  }
-  NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
-      for(var i = this.length - 1; i >= 0; i--) {
-          if(this[i] && this[i].parentElement) {
-              this[i].parentElement.removeChild(this[i]);
-          }
+    /*     Element.prototype.remove = function() {
+          this.parentElement.removeChild(this);
       }
-  } */
+      NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+          for(var i = this.length - 1; i >= 0; i--) {
+              if(this[i] && this[i].parentElement) {
+                  this[i].parentElement.removeChild(this[i]);
+              }
+          }
+      } */
 
-  
 
-  this.getData();
+
+    this.getData();
 
 
 
   }
 
-  getData(){
+  getData() {
     setTimeout(() => {
       console.log('Our data is fetched');
-      setTimeout(document.getElementById("ca").remove(), 5000);
-
+     // setTimeout(document.getElementById("ca").remove(), 13000);
+/*       setTimeout(window.location.replace('localhost:3000/login2'),13000      )
+ */      setTimeout(window.location.replace("http://127.0.0.1:3000/login2"),5000      )
       this.setState({
         data: 'Hello WallStreet'
       })
@@ -294,26 +301,45 @@ class TorusTunnel extends Component {
   }
 
 
-/*     setTimeout(document.getElementById("ca").remove(), 100000); */ 
-/* updateDimensions = () => {
-  setTimeout(document.getElementById("ca").remove(), 5000);
-} */
+  /*     setTimeout(document.getElementById("ca").remove(), 100000); */
+  /* updateDimensions = () => {
+    setTimeout(document.getElementById("ca").remove(), 5000);
+  } */
 
   render() {
     return (
 
-      <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor:'#101522'
+      <div id='torusDiv'
+        style={{
+
+          /*  display: 'flex', */
+          /*        justifyContent: 'center',
+                 al        <div style={{ position: "relative", marginTop: 0 }}>
+dColor: '#101522'
 /*                     height: '800hv'
 */                }}>
-      
-      
 
-        {this.state.width > 1200 ? (<div id='divL'
+        {/* <form className="form" onSubmit={this.handleSubmit}>
+          <div className="input-group">
+            <label htmlFor="email">Email</label>
+            <input type="email" name="email" placeholder="nome@email.com.br" />
+          </div>
+          <div className="input-group">
+            <label htmlFor="password">Senha</label>
+            <input type="password" name="password" />
+          </div>
+          <button className="primary">ENTRAR</button>
+        </form>
+        <button className="secondary" onClick={this.handleClick}>
+          Criar uma nova conta
+        </button>
+       */}
+        <canvas id='ca'></canvas>
+
+     
+
+
+        {/*         {this.state.width > 1200 ? (<div id='divL'
 
           style={{
             display: 'flex',
@@ -344,7 +370,7 @@ class TorusTunnel extends Component {
 
             <canvas id='ca'></canvas>
           </div>
-        )}
+        )} */}
 
       </div>
 

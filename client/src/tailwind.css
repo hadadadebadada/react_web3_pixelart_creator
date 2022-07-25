@@ -2240,7 +2240,7 @@ video {
     background-color: #101522;
     background-color: rgba(16, 21, 34, var(--bg-opacity))
 }
-.hover\:bg-red-668:hover{
+.hover\:bg-red-666:hover{
     --bg-opacity: 1;
     background-color: #517a9e;
     background-color: rgba(81, 122, 158, var(--bg-opacity))
