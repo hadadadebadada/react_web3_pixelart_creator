@@ -10,6 +10,8 @@ import donkey from '../assets/models/donkey.glb'
 
 import * as TWEEN from '@tweenjs/tween.js'
 
+import Texture123 from '../assets/pictures/landingpage/01-3.jpg'
+
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 //https://1stwebdesigner.com/examples-of-three-js-in-action/
@@ -20,6 +22,17 @@ class TorusTunnel extends Component {
 
   componentDidMount() {
     //     var $container = $('#container');
+
+
+    const loader = new THREE.TextureLoader();
+
+    loader.setCrossOrigin("true");
+
+
+
+    let texture123 = loader.load(Texture123)
+
+
     var renderer = new THREE.WebGLRenderer({ canvas: document.querySelector("#ca"), antialias: true, alpha: true });
     var camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 0.1, 10000);
     var scene = new THREE.Scene();
@@ -50,7 +63,7 @@ class TorusTunnel extends Component {
     renderer.setPixelRatio(window.devicePixelRatio);
     /*     const canvasContainer = document.querySelector('#divL');
         renderer.setSize(canvasContainer.offsetWidth, canvasContainer.offsetHeight);
-    
+    texture123
         let aspect = canvasContainer.offsetWidth / canvasContainer.offsetHeight */
     /*    const controls = new OrbitControls(camera, document.querySelector("#ca"));
        controls.target.set(0, 0, 0);
@@ -71,7 +84,85 @@ class TorusTunnel extends Component {
      */    /////////////////////////////////////////
 
 
-    var normalMaterial = new THREE.MeshNormalMaterial({});
+   // var normalMaterial = new THREE.MeshNormalMaterial({wireframe:true, color:0xff0000});
+
+   // var normalMaterial = new THREE.MeshStandardMaterial({wireframe:true, color:0xff0000});
+
+/*     const normalMaterial = new THREE.ShaderMaterial({
+      wireframe: true,
+      vertexShader: `
+      void main()	{
+        // projectionMatrix, modelViewMatrix, position -> passed in from Three.js
+        gl_Position = projectionMatrix
+          * modelViewMatrix
+          * vec4(position.x, position.y, position.z, 1.0);
+      }
+      `,
+      fragmentShader: `
+      void main() {
+        gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+      }
+      `,
+    }); */
+    const uniformData = {
+      u_time: {
+        type: 'f',
+      },
+    };
+
+/*     const loader = new THREE.TextureLoader();
+
+    loader.setCrossOrigin("true");
+
+    const texture123 = loader.load(texture123) */
+
+
+    var normalMaterial = new THREE.MeshPhongMaterial({
+
+        map: texture123,
+        // bumpMap: earthBumpMap,
+        // specularMap: earthSpecMap,
+        bumpScale: 1,
+        shininess: 1
+    })
+
+
+     /*  const normalMaterial = new THREE.ShaderMaterial({
+      wireframe: false,
+      uniforms: uniformData,
+      vertexShader: `
+      varying vec3 pos;
+      uniform float u_time;
+
+      void main()	{
+        vec4 result;
+        pos = position;
+
+        result = vec4(
+          position.x,
+          4.0*sin(position.z/4.0 + u_time) + position.y,
+          position.z,
+          1.0
+        );
+
+        gl_Position = projectionMatrix * modelViewMatrix * result;
+      }
+      `,
+      fragmentShader: `
+      varying vec3 pos;
+
+
+      uniform float u_time;
+      void main() {
+        if (pos.x >= 0.0) {
+          gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+        } else {
+          gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0);
+        }
+      }
+      `,
+    }); */
+    
 
 
     // Torustrue
@@ -121,8 +212,8 @@ class TorusTunnel extends Component {
           glb.scene.position.x =20;
           glb.scene.position.y = 5; */
 
-      //glb.scene.scale.set(0.015,0.015,0.015);
-      glb.scene.position.z = 30;
+      glb.scene.scale.set(0.15,0.15,0.15);
+      glb.scene.position.z = -200;
       glb.scene.position.x = 0.01;
       glb.scene.position.y = 0.01;
 
@@ -230,8 +321,8 @@ class TorusTunnel extends Component {
 
     const tween1 = new TWEEN.Tween({ x: 0, y: 0, z: 70 }).to({
       x: -
-        0, y: 0, z: -68
-    }, 10000).onUpdate(function (object) {
+        0, y: 0, z: -248
+    }, 5000).onUpdate(function (object) {
       camera.position.set(object.x, object.y, object.z);
     })
 
@@ -293,7 +384,8 @@ class TorusTunnel extends Component {
       console.log('Our data is fetched');
      // setTimeout(document.getElementById("ca").remove(), 13000);
 /*       setTimeout(window.location.replace('localhost:3000/login2'),13000      )
- */      setTimeout(window.location.replace("http://127.0.0.1:3000/login2"),5000      )
+ */      
+setTimeout(window.location.replace("http://127.0.0.1:3000/login2"),5000      )
       this.setState({
         data: 'Hello WallStreet'
       })

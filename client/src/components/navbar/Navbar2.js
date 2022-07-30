@@ -66,7 +66,7 @@ function Navbar2() {
                             <NavItem>
                                 <NavLinks to='/home' onClick={closeMobileMenu}>
 
-                                    <h1>HOME</h1>
+                                    <h1>Home</h1>
 
                         {/*             <FormattedMessage
                                         id="navbar.home">./src/components/navbar/Navbar2.js
@@ -82,27 +82,27 @@ Module not found: Can't resolve '../Wrapper' in '/home/brate/Desktop/pixelart_cr
                                                 id="navbar.services">
 
                                             </FormattedMessage> */}
-                                                <h1>SERVICES</h1>
+                                                <h1>Services</h1>
                                         </NavLinks> : <p> </p>}
                             </NavItem>
                             <NavItem>
                                 {
                                     username !== "admin" ?
-                                        <NavLinks to='/myBookings' onClick={closeMobileMenu}>
+                                        <NavLinks to='/roadmap' onClick={closeMobileMenu}>
                                {/*              <FormattedMessage
                                 eact-int                id="navbar.products">
 
                                             </FormattedMessage> */}
-                                                <h1>PRODUCTS</h1>
+                                                <h1>Roadmap</h1>
                                         </NavLinks> : <p></p>}
                             </NavItem>
                             <NavItem>
-                                <NavLinks to='/employeelist' onClick={closeMobileMenu}>
+                                <NavLinks to='/about' onClick={closeMobileMenu}>
                 {/*                     <FormattedMessage
                                         id="navbar.employeefinder">
 
                                     </FormattedMessage> */}
-                                        <h1>ABOUT</h1>
+                                        <h1>About</h1>
                                 </NavLinks>
                             </NavItem>
                 {/*             <NavItem>

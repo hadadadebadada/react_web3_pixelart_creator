@@ -50,16 +50,40 @@ class Pixelart extends Component {
           div.classList.add('pixel')
 
           let colorPicker = getComputedStyle(div)
-            .getPropertyValue('--main-bg-color');
 
           div.addEventListener('mouseover', function () {
             div.style.setProperty("--main-bg-color", color.value);
 
 
+/*             var mouseDown = 0;
+
+            div.onmousedown = function() { 
+              console.log("down")
+              console.log(mouseDown)
+
+              ++mouseDown
+              
+              ;
+            }
+            div.onmouseup = function() {
+              console.log("up")
+              console.log(mouseDown)
+
+              --mouseDown;
+            }
+            console.log(mouseDown)
+ */
+/*             if(mouseDown){
+              div.style.backgroundColor = color.value
+              div.style.setProperty("--main-bg-color", color.value);
+              div.style.setProperty("--pixel-bg-color", color.value);            } */
+
             if (!draw) return
+
             div.style.backgroundColor = color.value
             div.style.setProperty("--main-bg-color", color.value);
             div.style.setProperty("--pixel-bg-color", color.value);
+
 
 
           })
@@ -89,13 +113,48 @@ class Pixelart extends Component {
       }
 
 
+/*       window.addEventListener("dragend", function () {
+        console.log("dragend")
+        
+      })
 
+      window.addEventListener("dragenter", function () {
+        console.log("dragenter")
+        
+      })
+
+      window.addEventListener("dragleave", function () {
+        console.log("dragleave")
+        draw = true
+
+        
+      })
+      window.addEventListener("dragover", function () {
+        console.log("dragover")
+        draw = false
+
+        
+      })
+      window.addEventListener("dragstart", function () {
+        console.log("dragstart")
+        
+      })
+      window.addEventListener("drag", function () {
+        console.log("drag")
+        draw = false
+
+        
+      }) */
 
       window.addEventListener("mousedown", function () {
         draw = true
+        console.log(draw)
+        
       })
       window.addEventListener("mouseup", function () {
         draw = false
+        console.log(draw)
+
       })
 
 

@@ -34,13 +34,13 @@ class Animations extends Component {
 
         /*         document.body.appendChild(renderer.domElement);
          */
-        const controls = new OrbitControls(camera, canvas)
+     /*    const controls = new OrbitControls(camera, canvas)
 
         controls.target.set(0, 0, 0);
         controls.enableDamping = false;
         controls.enableRotate = false;
         controls.enableZoom = false;
-        controls.update();
+        controls.update(); */
 
         const geometry = new THREE.BoxGeometry()
         const material = new THREE.MeshBasicMaterial({
@@ -149,7 +149,7 @@ class Animations extends Component {
                         <h1 style={{
                             color:"white",
                             fontWeight:"bold",
-                            fontSize:"200%"
+                            fontSize:"130%"
                         }}>
                             
                                     <Typed 
@@ -207,7 +207,7 @@ class Animations extends Component {
 
                     }}
                 >
-                    <canvas style={{ overflow : 'scroll'}} id='c'></canvas>
+                    <canvas style={{ overflow : 'hidden'}} id='c'></canvas>
                 </div>)}
 
                 <div>

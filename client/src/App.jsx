@@ -13,11 +13,12 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import Footer from './components/footer/Footer'
 import Animations from "./components/Animations"
-import TestTailwind from "./components/TestTailwind";
+import TestTailwind from "./components/Roadmap";
 import Home from "./components/Home"
 import StartScreen from "./components/StartScreen";
 import TorusTunnel from "./components/TorusTunnel";
 import Login from "./components/Login";
+import Roadmap from "./components/Roadmap"
 class App extends Component {
 
   constructor(props) {
@@ -68,7 +69,11 @@ class App extends Component {
     return <>
       <div
         style={{
-          backgroundColor: "#101529"
+          backgroundColor: "#101529",
+          alignItems:"center",
+          justifyContent:"center"
+          
+        
         }}
       >
  
@@ -83,7 +88,7 @@ class App extends Component {
 
             <Route exact path='/services' />
 
-            <Route exact path='/employeelist' ></Route>
+            <Route exact path='/roadmap' element={<Roadmap></Roadmap>} ></Route>
 
 
             <Route path='/login' element={<TorusTunnel />} />
@@ -97,18 +102,7 @@ class App extends Component {
 
         </Router>
 
-        <div>
-
-        </div>
-{/*         <Animations></Animations>
-
-        <Pixelart></Pixelart>
-
-
-        <Home></Home>
-        <TestTailwind></TestTailwind> */}
-        {/*         <TorusTunnel></TorusTunnel>Navigate
- */}      </div>
+      </div>
 
       <Router>
         <Footer></Footer>
