@@ -4,7 +4,7 @@ import { IconContext } from 'react-icons/lib';
 import { Button, LangButton } from '../../globalStyles';
 /* import { Context } from '../Wrapper' */
 /* import { FormattedMessage } from 'react-intl' */
-
+import { FancyButton } from '../StartScreen';
 import tableIcon from "./icon.png"
 
 import {
@@ -19,7 +19,7 @@ import {
     NavBtnLink
 } from './Navbar2.elements';
 
-function Navbar2() {
+function Navbar2({resultRef}) {
 
 /*     const context = useContext(Context) */
 
@@ -29,7 +29,16 @@ function Navbar2() {
 
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
+   // const scrollToElement = () => this.testRef.current.scrollIntoView();
+   const onSubmit = (e) => {
+    e.preventDefault();
+ //   document.querySelector("#container").scrollIntoView();
+  //  document.querySelector("#divEarth").scrollIntoView();
 
+  document.querySelector("#roadmap").scrollIntoView();
+
+    
+  };
     const showButton = () => {
         if (window.innerWidth <= 960) {
             setButton(false);
@@ -152,7 +161,7 @@ Module not found: Can't resolve '../Wrapper' in '/home/brate/Desktop/pixelart_cr
                             <LangButton /* value={context.locale = "en-US"} onClick={context.selectLang} */>🇺🇸</LangButton>
                             <LangButton /* value={context.locale = "es-MX"} onClick={context.selectLang} */>🇪🇸</LangButton>
                             <LangButton /* value={context.locale = "ru-RU"} onClick={context.selectLang} */>🇷🇺</LangButton>
-
+                            <button onClick={onSubmit}>adsd</button>
 
 
 
