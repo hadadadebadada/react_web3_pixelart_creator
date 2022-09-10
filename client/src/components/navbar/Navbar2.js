@@ -90,7 +90,7 @@ function Navbar2() {
     return (
         <>
             <IconContext.Provider value={{ color: '#fff' }}>
-                <Nav>/login2
+                <Nav>
                     <NavbarContainer>
                         <NavLogo to='/home' onClick={closeMobileMenu}>
                             <img style={{ height: 40, width: 40 }} src={tableIcon} alt="Minting Logo" />

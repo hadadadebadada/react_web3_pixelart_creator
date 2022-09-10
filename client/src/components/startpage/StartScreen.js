@@ -4,7 +4,7 @@ import Pixelart from './pixelartcreator/Pixelart';
 import Home from './Home';
 import TestTailwind from './Roadmap';
 
-
+import TestingJQuery from './TestingJQuery';
 class StartScreen extends Component {
 
   
@@ -15,6 +15,8 @@ class StartScreen extends Component {
                 <Pixelart></Pixelart>
                 <Home></Home>
                 <TestTailwind></TestTailwind>
+
+                {/* <TestingJQuery></TestingJQuery> */}
             </div>
         );
     }
