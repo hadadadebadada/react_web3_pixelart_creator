@@ -102,7 +102,18 @@ export const FooterLinkTitle = styled.h1`
   margin-bottom: 16px;
 `;
 
-export const FooterLink = styled(Link)`
+/* export const FooterLink = styled(Link)`
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+  &:hover {
+    color: #0467fb;
+    transition: 0.3s ease-out;
+  }
+`;
+ */
+
+export const FooterLink = styled.a`
   color: #fff;
   text-decoration: none;
   margin-bottom: 0.5rem;

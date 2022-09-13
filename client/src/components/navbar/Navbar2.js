@@ -1,11 +1,14 @@
 import React, { useState, useEffect, /* useContext */ } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaTimes,FaInstagram,FaTwitter,FaDiscord } from 'react-icons/fa';
+import {  FcReddit} from 'react-icons/fc';
+
 import { IconContext } from 'react-icons/lib';
 import { Button, LangButton } from '../../globalStyles';
 /* import { Context } from '../Wrapper' */
 /* import { FormattedMessage } from 'react-intl' */
 import tableIcon from "./icon.png"
-
+import { SocialIcons,
+    SocialIconLink} from "../footer/Footer.elements"
 import {
     Nav,
     NavbarContainer,
@@ -17,6 +20,7 @@ import {
     NavLinks,
     NavBtnLink
 } from './Navbar2.elements';
+import { NavLink } from 'react-router-dom';
 
 function Navbar2() {
 
@@ -95,8 +99,9 @@ function Navbar2() {
                         <NavLogo to='/home' onClick={closeMobileMenu}>
                             <img style={{ height: 40, width: 40 }} src={tableIcon} alt="Minting Logo" />
 
-                            MINT YOUR OWN PIXELART 
+                            &nbsp;Web3 PixelGrid&nbsp;
 
+                            <img style={{ height: 40, width: 40 }} src={tableIcon} alt="Minting Logo" />
 
                         </NavLogo>
                         <MobileIcon onClick={handleClick}>
@@ -122,7 +127,7 @@ Module not found: Can't resolve '../Wrapper' in '/home/brate/Desktop/pixelart_cr
                                                 id="navbar.services">
 
                                             </FormattedMessage> */}
-                                                <h1>Services</h1>
+                                                <h1>PixelGrid</h1>
                                         </NavLinks> : <p> </p>}
                             </NavItem>
                             <NavItem>
@@ -186,21 +191,27 @@ Module not found: Can't resolve '../Wrapper' in '/home/brate/Desktop/pixelart_cr
                                 )}
                             </NavItemBtn>
 
+                           
+                            <SocialIcons>
+                            <SocialIconLink  href='https://www.instagram.com/web3pixelgrid/' target='_blank' aria-label='Instagram'><FaDiscord></FaDiscord></SocialIconLink>
+                            <SocialIconLink  href='https://twitter.com/pixelgrid2' target='_blank' aria-label='Instagram'><FaTwitter></FaTwitter></SocialIconLink>
+                            <SocialIconLink  href='https://www.reddit.com/user/web3Pixelgrid' target='_blank' aria-label='Reddit'><FcReddit></FcReddit></SocialIconLink>
+                            <SocialIconLink  href='https://www.instagram.com/web3pixelgrid/' target='_blank' aria-label='Instagram'><FaInstagram></FaInstagram></SocialIconLink>
+                            </SocialIcons>
+                       
+
+                            
+     
+
+                    
 
 
-                            <LangButton /* value={context.locale = "de-DE"} onClick={context.selectLang} */>🇩🇪</LangButton>
-                            <LangButton /* value={context.locale = "en-US"} onClick={context.selectLang} */>🇺🇸</LangButton>
-                            <LangButton /* value={context.locale = "es-MX"} onClick={context.selectLang} */>🇪🇸</LangButton>
-                            <LangButton /* value={context.locale = "ru-RU"} onClick={context.selectLang} */>🇷🇺</LangButton>
-
-{/*                             <button onClick={onSubmit}>adsd</button>
- */}
 
 
 
 
 
-                        </NavMenu>{/*  */}
+                        </NavMenu>
                     </NavbarContainer>
                 </Nav>
             </IconContext.Provider>

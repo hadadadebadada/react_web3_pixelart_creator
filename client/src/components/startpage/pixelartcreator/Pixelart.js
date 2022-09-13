@@ -50,6 +50,7 @@ class Pixelart extends Component {
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
       this.setState({ web3, accounts, contract: instance }, /* this.runExample */);
+
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(
@@ -167,11 +168,25 @@ class Pixelart extends Component {
 
   mintPicture = async () => {
 
-    const { accounts, contract } = this.state;
+    const { accounts, contract, web3 } = this.state;
+    // const gasPrice = await web3.eth.getGasPrice();
+    // console.log("gas price:", gasPrice)
+    // console.log("account1: ",accounts[0])
+    // let accounts1 = web3.eth.getAccounts(console.log);
+    // console.log("account12: ",accounts1[0])
 
     const container = document.querySelector("#container");
     container.style.height = "200px";
     container.style.width = "200px";
+
+
+    contract.methods.withdraw().call() // value in wei
+    .then(function (receipt) {
+      // receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
+
+      console.log("money withdrawed")
+      console.log(receipt)
+    });
 
     html2canvas(container).then((canvas) => {
 
@@ -179,21 +194,47 @@ class Pixelart extends Component {
       //const url = canvas.toDataURL(); //png 
       
       this.setState({ image: canvas.toDataURL() }, () => {
-        console.log(this.state)
-        
 
-        let pngString = this.state.image;
+       let picString = this.state.image
        
-        console.log("NFT META DATA: ", contract.methods.formatTokenURI(pngString).call())
-        contract.methods.mint(this.state.image).send({ from: accounts[0] })
-          .then(function (receipt) {
-            // receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
-            console.log(receipt)
-          });
+       contract.methods.mint(picString).send({ from: accounts[0],value:5000000000000000000,picString }) // value in wei
+       .then(function (receipt) {
+         // receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
 
+      
+         console.log(receipt)
+       });
+       
+      web3.eth.getBalance("0x345B674C0Dd658eAd4f6287B1E31e053C8139084")
+      .then(console.log);
+        //console.log("NFT META DATA: ", contract.methods.formatTokenURI(pngString).call())
+    
+      //     web3.eth.sendTransaction({
+      //       from: accounts[0],
+      //       to: '0x433a69a3F84FbfcF32694f871ebd92046Af39ceD',
+      //       value: '50000000000000000'
+      //   })
+      //   .then(function(receipt){
+      // /*     console.log(receipt)
+      //     console.log(picString) */
+      //     contract.methods.mint(picString).send({ from: accounts[0],value:5000000000000000000,picString })
+      //     .then(function (receipt) {
+      //       // receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
+
+      //       console.log(receipt)
+      //     });
+    
+      //   });
       });
+
+
+
+      //console.log("TokenCounter: ", contract.methods.getTokenCounter().call())
+
       container.style.height = "800px";
       container.style.width = "800px";
+
+    // web3.eth.sendTransaction({from:accounts[0], to:'0x433a69a3F84FbfcF32694f871ebd92046Af39ceD', value: web3.toWei(5, "ether"), gas:100000});
     });
 
 

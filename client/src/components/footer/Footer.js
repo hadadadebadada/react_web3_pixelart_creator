@@ -1,12 +1,8 @@
 import React from 'react';
 import { Button } from '../../globalStyles';
-import {
-  FaFacebook,
-  FaInstagram,
-  FaYoutube,
-  FaTwitter,
-  FaLinkedin
-} from 'react-icons/fa';
+
+import { FaBars, FaTimes,FaInstagram,FaTwitter,FaDiscord } from 'react-icons/fa';
+import {  FcReddit} from 'react-icons/fc';
 import {
   FooterContainer,
   FooterSubscription,
@@ -73,9 +69,11 @@ function Footer() {
           <FooterLinkItems>              
           <FooterLinkTitle>Social Media</FooterLinkTitle>
 
-            <FooterLink to='/'>Facebook</FooterLink>
-            <FooterLink to='/'>Youtube</FooterLink>
-            <FooterLink to='/'>Twitter</FooterLink>
+            <FooterLink href='https://discord.gg/svZv2gXK7W' target='_blank' >Discord</FooterLink>
+            <FooterLink href='https://www.instagram.com/web3pixelgrid/' target='_blank' >Instagram</FooterLink>
+            <FooterLink href="https://twitter.com/pixelgrid2" target='_blank'>Twitter</FooterLink>            
+            <FooterLink href="https://www.reddit.com/user/web3Pixelgrid" target='_blank'>Reddit</FooterLink>
+
           </FooterLinkItems>
         </FooterLinksWrapper>
       </FooterLinksContainer>
@@ -84,33 +82,20 @@ function Footer() {
           <SocialLogo to='/'>
 
             <img style={{ height: 40, width: 40 }} src={tableIcon} alt="Desksharing Logo" />
-            MINTING
+            &nbsp;Web3 PixelGrid&nbsp;
+
             <img style={{ height: 40, width: 40 }} src={tableIcon} alt="Desksharing Logo" />
 
           </SocialLogo>
           <WebsiteRights>PIXELART MINT © 2022</WebsiteRights>
-          <SocialIcons>
-            <SocialIconLink href='/' target='_blank' aria-label='Facebook'>
-              <FaFacebook />
-            </SocialIconLink>
-            <SocialIconLink href='/' target='_blank' aria-label='Instagram'>
-              <FaInstagram />
-            </SocialIconLink>
-            <SocialIconLink
 
-              rel='noopener noreferrer'
-              target='_blank'
-              aria-label='Youtube'
-            >
-              <FaYoutube />
-            </SocialIconLink>
-            <SocialIconLink href='/' target='_blank' aria-label='Twitter'>
-              <FaTwitter />
-            </SocialIconLink>
-            <SocialIconLink href='/' target='_blank' aria-label='LinkedIn'>
-              <FaLinkedin />
-            </SocialIconLink>
-          </SocialIcons>
+                                      <SocialIcons>
+                            <SocialIconLink  href='https://discord.gg/svZv2gXK7W' target='_blank' aria-label='Discord'><FaDiscord></FaDiscord></SocialIconLink>
+                            <SocialIconLink  href='https://twitter.com/pixelgrid2' target='_blank' aria-label='Instagram'><FaTwitter></FaTwitter></SocialIconLink>
+                            <SocialIconLink  href='https://www.reddit.com/user/web3Pixelgrid' target='_blank' aria-label='Reddit'><FcReddit></FcReddit></SocialIconLink>
+                            <SocialIconLink  href='https://www.instagram.com/web3pixelgrid/' target='_blank' aria-label='Instagram'><FaInstagram></FaInstagram></SocialIconLink>
+                            </SocialIcons>
+                       
         </SocialMediaWrap>
       </SocialMedia>
     </FooterContainer>
