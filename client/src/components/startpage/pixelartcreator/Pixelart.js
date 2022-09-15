@@ -3,6 +3,47 @@ import "./Pixelart.css"
 import html2canvas from "html2canvas"
 import OnChainNFTContract from "../../../contracts/OnChainNFT.json"
 import getWeb3 from "../../../getWeb3";
+import styled from "styled-components";
+
+ const Button2 = styled.button`
+  display: inline-block;
+  color: palevioletred;
+  background: yellow;
+  font-size: 10em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+  display: block;
+  &:hover {
+    color: orange; // <Thing> when hovered
+    background: black;}
+
+    @media screen and (max-width: 960px) {
+      font-size: 3em;
+
+    }
+
+`;
+const Input = styled.input`
+  font-size: 18px;
+  padding: 10px;
+  width:35%;
+  margin: 10px;
+  background: papayawhip;
+  border: none;
+  border-radius: 3px;
+  ::placeholder {
+    color: palevioletred;
+  }
+  &:hover {
+    color: orange; // <Thing> when hovered
+  }
+
+  @media screen and (max-width: 960px) {
+    width: 100%;
+  }
+`;
 
 class Pixelart extends Component {
 
@@ -21,28 +62,17 @@ class Pixelart extends Component {
 
     this.width = this.updateDimensions.bind(this)
     this.height = this.updateDimensions.bind(this)
-
     this.web3 = this.componentDidMount.bind(this);
     this.accounts = this.componentDidMount.bind(this);
-
     this.contract = this.componentDidMount.bind(this);
-   // this.image = this.appendScreenshot.bind(this);
 
   }
   componentDidMount = async () => {
 
     try {
-      // Get network provider and web3 instance.
-      //OLD
-      const web3 = await getWeb3();
-/*       const web3 = new Web3(new Web3.providers.HttpProvider(
-        'https://ropsten.infura.io/v3/da50fb24a3c649408d061398445ef5f6'
-    )); */
-      // Use web3 to get the user's accounts.
-      const accounts = await web3.eth.getAccounts();
 
-      //web3.eth.personal.currentProvider.connected = false
-      // Get the contract instance.
+      const web3 = await getWeb3();
+      const accounts = await web3.eth.getAccounts();
       const networkId = await web3.eth.net.getId();
       const deployedNetwork = OnChainNFTContract.networks[networkId];
       const instance = new web3.eth.Contract(
@@ -50,10 +80,10 @@ class Pixelart extends Component {
         deployedNetwork && deployedNetwork.address,
       );
 
-      instance.methods.tokenURI(1).call()
-      .then(res => {
-        console.log(res);
-      });
+      // instance.methods.tokenURI(1).call()
+      // .then(res => {
+      //   console.log(res);
+      // });
   
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
@@ -70,7 +100,7 @@ class Pixelart extends Component {
 
     let draw = false
     let container = document.querySelector('.container')
-    let size = 8
+    let size = 32
     const color = document.querySelector('.color')
     let resetBtn = document.querySelector('#btn')
     let eraserBtn = document.querySelector('#eraserBtn')
@@ -82,11 +112,7 @@ class Pixelart extends Component {
       function populate(size) {
 
 
-        container.style.setProperty('--size', size)
-
-
-
-
+        container.style.setProperty('--size', size);
 
         for (let i = 0; i < size * size; i++) {
           let div = document.createElement('div')
@@ -166,9 +192,6 @@ class Pixelart extends Component {
 
   updateDimensions = () => {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
-
-
-
   };
 
 
@@ -177,11 +200,6 @@ class Pixelart extends Component {
   mintPicture = async () => {
 
     const { accounts, contract, web3 } = this.state;
-    // const gasPrice = await web3.eth.getGasPrice();
-    // console.log("gas price:", gasPrice)
-    // console.log("account1: ",accounts[0])
-    // let accounts1 = web3.eth.getAccounts(console.log);
-    // console.log("account12: ",accounts1[0])
 
  
     const container = document.querySelector("#container");
@@ -189,36 +207,27 @@ class Pixelart extends Component {
     container.style.width = "200px";
 
 
-/*     contract.methods.withdraw().call() // value in wei
-    .then(function (receipt) {
-      // receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
-
-      console.log("money withdrawed")
-      console.log(receipt)
-    }); */
-
-
-  
     html2canvas(container).then((canvas) => {
 
 
-      //const url = canvas.toDataURL(); //png 
       
       this.setState({ image: canvas.toDataURL() }, () => {
-
        let picString = this.state.image
-console.log(picString);       
+       console.log(picString)
        contract.methods.mint(picString).send({ from: accounts[0],value:1000000000000000,picString }) // value in wei
        .then(function (receipt) {
          // receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
 
-      
+
+         alert("picture minted!")
+
+   
+         //safe pic in background 
          console.log(receipt)
        });
        
-      web3.eth.getBalance("0x593d957aF16Fb5C526d3410b8320EC431e406eC2")
-      .then(console.log);
-        //console.log("NFT META DATA: ", contract.methods.formatTokenURI(pngString).call())
+      // web3.eth.getBalance("0x593d957aF16Fb5C526d3410b8320EC431e406eC2")
+      // .then(console.log);
     
       //     web3.eth.sendTransaction({
       //       from: accounts[0],
@@ -240,16 +249,11 @@ console.log(picString);
 
 
 
-      //console.log("TokenCounter: ", contract.methods.getTokenCounter().call())
-
       container.style.height = "800px";
       container.style.width = "800px";
 
     // web3.eth.sendTransaction({from:accounts[0], to:'0x433a69a3F84FbfcF32694f871ebd92046Af39ceD', value: web3.toWei(5, "ether"), gas:100000});
     });
-
-
-
 
 
 
@@ -289,9 +293,11 @@ console.log(picString);
 
       ) : <div style={{ height: "800px", width: "800px" }} className="container" id="container"></div>}</p>
 
+  <div style={{height:"100px"}}></div>
+      <Input type="text" placeholder="Name your NFT" />
+        <Input type="text" placeholder="Give your NFT a description" />
 
-
-      <button onClick={this.mintPicture}>Load Canvas</button>
+      <Button2 onClick={this.mintPicture}>Mint your artwork</Button2>
 
 
 
