@@ -33,12 +33,15 @@ class Pixelart extends Component {
 
     try {
       // Get network provider and web3 instance.
+      //OLD
       const web3 = await getWeb3();
-
+/*       const web3 = new Web3(new Web3.providers.HttpProvider(
+        'https://ropsten.infura.io/v3/da50fb24a3c649408d061398445ef5f6'
+    )); */
       // Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts();
 
-
+      //web3.eth.personal.currentProvider.connected = false
       // Get the contract instance.
       const networkId = await web3.eth.net.getId();
       const deployedNetwork = OnChainNFTContract.networks[networkId];
@@ -47,6 +50,11 @@ class Pixelart extends Component {
         deployedNetwork && deployedNetwork.address,
       );
 
+      instance.methods.tokenURI(1).call()
+      .then(res => {
+        console.log(res);
+      });
+  
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
       this.setState({ web3, accounts, contract: instance }, /* this.runExample */);
@@ -175,19 +183,22 @@ class Pixelart extends Component {
     // let accounts1 = web3.eth.getAccounts(console.log);
     // console.log("account12: ",accounts1[0])
 
+ 
     const container = document.querySelector("#container");
     container.style.height = "200px";
     container.style.width = "200px";
 
 
-    contract.methods.withdraw().call() // value in wei
+/*     contract.methods.withdraw().call() // value in wei
     .then(function (receipt) {
       // receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
 
       console.log("money withdrawed")
       console.log(receipt)
-    });
+    }); */
 
+
+  
     html2canvas(container).then((canvas) => {
 
 
@@ -196,8 +207,8 @@ class Pixelart extends Component {
       this.setState({ image: canvas.toDataURL() }, () => {
 
        let picString = this.state.image
-       
-       contract.methods.mint(picString).send({ from: accounts[0],value:5000000000000000000,picString }) // value in wei
+console.log(picString);       
+       contract.methods.mint(picString).send({ from: accounts[0],value:1000000000000000,picString }) // value in wei
        .then(function (receipt) {
          // receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
 
@@ -205,7 +216,7 @@ class Pixelart extends Component {
          console.log(receipt)
        });
        
-      web3.eth.getBalance("0x345B674C0Dd658eAd4f6287B1E31e053C8139084")
+      web3.eth.getBalance("0x593d957aF16Fb5C526d3410b8320EC431e406eC2")
       .then(console.log);
         //console.log("NFT META DATA: ", contract.methods.formatTokenURI(pngString).call())
     
