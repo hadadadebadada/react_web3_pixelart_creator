@@ -135,7 +135,6 @@ contract OnChainNFT is ERC721URIStorage, Ownable {
     uint256 public mintPrice;
     uint256 public totalSupply;
     uint256 public maxSupply;
-    uint256 public maxPerWallet;
     bool public isMintEnabled=true;
 
     address payable public withdrawWallet;
@@ -145,7 +144,6 @@ contract OnChainNFT is ERC721URIStorage, Ownable {
         mintPrice = 0.001 ether;
         totalSupply = 0;
         maxSupply = 9;
-        maxPerWallet = 3;
     }
 
     function toggleIsMintEnabled(bool isMintEnabled_) external onlyOwner {
@@ -196,16 +194,9 @@ contract OnChainNFT is ERC721URIStorage, Ownable {
                 )
             );
     }
-    function concatenate(string memory svg1, string memory svg2, string memory imageURI) public pure returns (string memory) {
-        
-        
-        return string(abi.encodePacked(svg1, imageURI, svg2));
-    }
-    /* Mints the token */
-
         function mint(string memory imageURI) external payable {
 
-           // require(isMintEnabled, "minting not enabled!");
+            require(isMintEnabled, "minting not enabled!");
             require(mintedWallets[msg.sender]<3, 'exceeds max per wallet');
             require(msg.value == mintPrice,'wrong value');
             require(maxSupply> totalSupply,'sold out');
@@ -214,21 +205,15 @@ contract OnChainNFT is ERC721URIStorage, Ownable {
             totalSupply++;
 
             string memory tokenURI = formatTokenURI(imageURI); 
-
             uint256 tokenId=totalSupply;
+            
             _safeMint(msg.sender, tokenId);
             _setTokenURI(tokenId, tokenURI);
         }
 
   function withdraw() public payable onlyOwner {
-    // This will pay HashLips 5% of the initial sale.
-    // You can remove this if you want, or keep it in to support HashLips and his channel.
-    // ==============================================description balance.
-    // Do not remove this otherwise you will not be able to withdraw the funds.
-    // =============================================================================
     (bool os, ) = payable(owner()).call{value: address(this).balance}("");
     require(os);
-    // =============================================================================
   }
 
    
