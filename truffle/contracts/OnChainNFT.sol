@@ -6,6 +6,7 @@ pragma solidity >=0.4.22 <0.9.0;
 import "../node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
 import "../node_modules/@openzeppelin/contracts/utils/Counters.sol";
+
 library Base64 {
     string internal constant TABLE_ENCODE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
     bytes  internal constant TABLE_DECODE = hex"0000000000000000000000000000000000000000000000000000000000000000"
@@ -143,7 +144,7 @@ contract OnChainNFT is ERC721URIStorage, Ownable {
     constructor() payable ERC721("OnChainPixelart", "ONP") {
         mintPrice = 0.001 ether;
         totalSupply = 0;
-        maxSupply = 9;
+        maxSupply = 999;
     }
 
     function toggleIsMintEnabled(bool isMintEnabled_) external onlyOwner {
@@ -159,6 +160,7 @@ contract OnChainNFT is ERC721URIStorage, Ownable {
         svg1 = "<svg width='200' height='200' xmlns='http://www.w3.org/2000/svg'> <image href='";
         return svg1;
     }    
+
         function getSvg2() private pure returns (string memory) {
         string memory svg2;
         svg2 = "'></image> </svg>";
@@ -170,19 +172,26 @@ contract OnChainNFT is ERC721URIStorage, Ownable {
         curlyBrace = '"}';
         return curlyBrace;
     }
+
+
     /* Generates a tokenURI using Base64 string as the image */
-    function formatTokenURI(string memory imageURI)
+    function formatTokenURI(string memory name, string memory description,string memory imageURI)
         public
         pure
         returns (string memory)
     {
+        
         return
             string(
                 abi.encodePacked("data:application/json;base64,",
                             Base64.encode(
                       bytes(string(
                         abi.encodePacked(
-                            '{"name": "LCM ON-CHAINED", "description": "A simple PNG based on-chain NFT", "image_data":"',
+                            '{"name": "',
+                            name,
+                            '", "description": "',
+                            description,
+                            '", "image_data":"',
                             getSvg1(),
                             imageURI,
                             getSvg2(),
@@ -194,17 +203,17 @@ contract OnChainNFT is ERC721URIStorage, Ownable {
                 )
             );
     }
-        function mint(string memory imageURI) external payable {
+        function mint(string memory name, string memory description,string memory imageURI) external payable {
 
-            require(isMintEnabled, "minting not enabled!");
-            require(mintedWallets[msg.sender]<3, 'exceeds max per wallet');
-            require(msg.value == mintPrice,'wrong value');
-            require(maxSupply> totalSupply,'sold out');
+            require(isMintEnabled, "owner disabled minting!");
+            require(mintedWallets[msg.sender]<10, 'exceeds max per wallet');
+            require(msg.value == mintPrice,'wrong value for minting price');
+            require(maxSupply> totalSupply,'collection sold out');
 
             mintedWallets[msg.sender]++;
             totalSupply++;
 
-            string memory tokenURI = formatTokenURI(imageURI); 
+            string memory tokenURI = formatTokenURI(name, description, imageURI); 
             uint256 tokenId=totalSupply;
             
             _safeMint(msg.sender, tokenId);

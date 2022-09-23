@@ -3,6 +3,7 @@
     "@openzeppelin/contracts": "^4.7.3",
     "@truffle/hdwallet-provider": "^2.0.14",
     "nvm": "^0.0.4",
+    "truffle": "^5.5.30",
     "truffle-hdwallet-provider": "^1.0.17"
   }
 }
