@@ -4,7 +4,7 @@ import Pixelart from './pixelartcreator/Pixelart';
 import Home from './Home';
 import TestTailwind from './Roadmap';
 
-import TestingJQuery from './TestingJQuery';
+//import TestingJQuery from './TestingJQuery';
 class StartScreen extends Component {
 
   

@@ -5,7 +5,6 @@ import React, { Component } from "react";
 import OnChainNFTContract from "./contracts/OnChainNFT.json"
 import getWeb3 from "./getWeb3"; */
 import Navbar2 from "./components/navbar/Navbar2"
-import "./App.css";
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import Footer from './components/footer/Footer'
 import StartScreen from "./components/startpage/StartScreen";
@@ -30,9 +29,6 @@ class App extends Component {
           <Navbar2 />
 
           <Routes>
-
-{/*           <Route path="/" element={<Navigate replace to="/home" />} />
- */}
 
             <Route exact path='/services' />
 

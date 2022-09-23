@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+/* import React, { Component } from 'react';
 import $ from 'jquery';
 
 class TestingJQuery extends Component {
@@ -23,4 +23,4 @@ class TestingJQuery extends Component {
     }
 }
 
-export default TestingJQuery;
+export default TestingJQuery; */

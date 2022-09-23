@@ -20,6 +20,7 @@ import {
     NavLinks,
     NavBtnLink
 } from './Navbar2.elements';
+
 import { NavLink } from 'react-router-dom';
 
 function Navbar2() {

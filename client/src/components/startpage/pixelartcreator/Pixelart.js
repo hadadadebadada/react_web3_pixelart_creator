@@ -240,7 +240,9 @@ class Pixelart extends Component {
         console.log(picString)
 
         try{        
-        contract.methods.mint(picString).send({ from: accounts[0], value: 1000000000000000, picString }) // value in wei
+          let name = "testname"
+          let description = "testdesc"
+        contract.methods.mint(name, description, picString).send({ from: accounts[0], value: 1000000000000000, picString }) // value in wei
         .then(function (receipt) {
           // receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
           alert("picture minted!")
