@@ -57,7 +57,8 @@ class Pixelart extends Component {
       web3: null,
       accounts: null,
       contract: null,
-      image: ""
+      image: "",
+      name:""
     };
 
     this.width = this.updateDimensions.bind(this)
@@ -65,7 +66,7 @@ class Pixelart extends Component {
     this.web3 = this.componentDidMount.bind(this);
     this.accounts = this.componentDidMount.bind(this);
     this.contract = this.componentDidMount.bind(this);
-
+    //this.name = this.getInput(this);
   }
   componentDidMount = async () => {
 
@@ -195,6 +196,31 @@ class Pixelart extends Component {
 
   }
 
+/*   function getInput(){
+    let log2 = document.querySelector("#nameInput");
+    return log2;
+  } */
+
+ getInput  = async (e) =>{
+    const elem = e.currentTarget;
+   //
+    let input = await document.getElementById("input").value
+    console.log(elem)
+    this.setState({name:input});
+  //  console.log(elem)
+    
+    this.consoleLogState();
+  }
+
+  consoleLogState(){
+    console.log(this.state)
+  }
+
+/* 
+ setState = ({ image: canvas.toDataURL() }, () => {
+  
+
+  }); */
   mintPicture = async () => {
 
     if (window.ethereum) {
@@ -235,22 +261,36 @@ class Pixelart extends Component {
 
     //alert("connedted to: ",web3.eth.getAccounts()    );
     html2canvas(container).then((canvas) => {
-      this.setState({ image: canvas.toDataURL() }, () => {
+      let input = document.getElementById("input").value
+
+      this.setState({ image: canvas.toDataURL(), name:input }, () => {
         let picString = this.state.image
-        console.log(picString)
+       console.log(picString)
+
+
+  
 
         try{        
-          let name = "testname"
-          let description = "testdesc"
+          const input = document.querySelector('input');
+          const log = document.getElementById('values');
+
+          input.addEventListener('input', updateValue);
+
+          function updateValue(e) {
+            log.textContent = e.target.value;
+          }
+          let name = this.state.name
+          let description = ""
+
         contract.methods.mint(name, description, picString).send({ from: accounts[0], value: 1000000000000000, picString }) // value in wei
         .then(function (receipt) {
           // receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
           alert("picture minted!")
           //safe pic to api
-          console.log(receipt)
+          //console.log(receipt)
         });}catch(error){
           alert("please connect to metamask")
-          console.log(error);
+          //console.log(error);
 
         };
 
@@ -273,6 +313,12 @@ class Pixelart extends Component {
   render() {
 
     let myWidth = this.state.width * 0.95
+/*     const log = document.getElementById('values');
+    let log2 = document.querySelector("#nameInput");
+    console.log(log2) */
+
+
+    let name = this.state.name
 
     return <div className="Appi">
 
@@ -293,8 +339,11 @@ class Pixelart extends Component {
 
       <div style={{ height: "100px" }}></div>
 
-      <Input type="text" placeholder="Name your NFT" />
-      <Input type="text" placeholder="Give your NFT a description" />
+        <input style={{width:"30%"}}id="input" value={name} type="text" onChange={this.getInput}  placeholder="Name your NFT"/>
+{/*       <Input id="nameInput" type="text" onChange={this.getInput} value={name} placeholder="Name your NFT" />
+ */}      
+ 
+ {/* <Input type="text" placeholder="Give your NFT a description" /> */}
       <Button2 onClick={this.mintPicture}>Mint your artwork</Button2>
 
     </div>;
