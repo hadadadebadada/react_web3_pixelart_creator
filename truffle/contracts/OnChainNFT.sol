@@ -174,8 +174,11 @@ contract OnChainNFT is ERC721URIStorage, Ownable {
     }
 
 
+// '{"name": "LCM ON-CHAINED", "description": "A simple PNG based on-chain NFT", "image_data":"',
+
+
     /* Generates a tokenURI using Base64 string as the image */
-    function formatTokenURI(string memory name, string memory description,string memory imageURI)
+/*     function formatTokenURIforOpenSea(string memory imageURI)
         public
         pure
         returns (string memory)
@@ -187,11 +190,7 @@ contract OnChainNFT is ERC721URIStorage, Ownable {
                             Base64.encode(
                       bytes(string(
                         abi.encodePacked(
-                            '{"name": "',
-                            name,
-                            '", "description": "',
-                            description,
-                            '", "image_data":"',
+                            '{"name": "LCM ON-CHAINED", "description": "A simple PNG based on-chain NFT", "image_data":"',
                             getSvg1(),
                             imageURI,
                             getSvg2(),
@@ -202,8 +201,67 @@ contract OnChainNFT is ERC721URIStorage, Ownable {
                        )
                 )
             );
+    } */
+
+      function formatTokenURI_svg(string memory name, string memory description,string memory imageURI)
+        public
+        pure
+        returns (string memory)
+    {
+        
+        return
+            string(
+                abi.encodePacked("data:application/json;base64,",
+                            Base64.encode(
+                      bytes(string(
+                        abi.encodePacked(
+
+                    '{"name": "',name,description,'",',
+                    '"image_data": "',   getSvg1(),
+                            imageURI,
+                            getSvg2(),
+                            addCurlyBrace(), '",',
+                    '"attributes": [{"trait_type": "Speed", "value": 1},',
+                    '{"trait_type": "Attack", "value": 2},',
+                    '{"trait_type": "Defence", "value": 3},',
+                    '{"trait_type": "Material", "value": "4"}',
+                    ']}'
+
+                        ))
+                    )
+                       )
+                )
+            );
     }
-        function mint(string memory name, string memory description,string memory imageURI) external payable {
+
+        function formatTokenURI_png(string memory name, string memory description,string memory imageURI)
+        public
+        pure
+        returns (string memory)
+    {
+        
+        return
+            string(
+                abi.encodePacked("data:application/json;base64,",
+                            Base64.encode(
+                      bytes(string(
+                        abi.encodePacked(
+
+                    '{"name": "',name,description,'",',
+                    '"image_data": "',imageURI,'",',
+                    '"attributes": [{"trait_type": "Speed", "value": 1},',
+                    '{"trait_type": "Attack", "value": 2},',
+                    '{"trait_type": "Defence", "value": 3},',
+                    '{"trait_type": "Material", "value": "4"}',
+                    ']}'
+
+                        ))
+                    )
+                       )
+                )
+            );
+    }
+        function mint(bool marketplaceCheck, string memory name, string memory description,string memory imageURI) external payable {
 
             require(isMintEnabled, "owner disabled minting!");
             require(mintedWallets[msg.sender]<10, 'exceeds max per wallet');
@@ -213,7 +271,16 @@ contract OnChainNFT is ERC721URIStorage, Ownable {
             mintedWallets[msg.sender]++;
             totalSupply++;
 
-            string memory tokenURI = formatTokenURI(name, description, imageURI); 
+
+            string memory tokenURI;
+
+            if(marketplaceCheck){
+            tokenURI = formatTokenURI_png(name, description, imageURI); 
+    
+            }  else {
+            tokenURI = formatTokenURI_svg(name, description, imageURI);
+            }
+
             uint256 tokenId=totalSupply;
             
             _safeMint(msg.sender, tokenId);
@@ -224,6 +291,11 @@ contract OnChainNFT is ERC721URIStorage, Ownable {
     (bool os, ) = payable(owner()).call{value: address(this).balance}("");
     require(os);
   }
-
+  
+//   contract MyCollectible is ERC721 {
+//     function contractURI() public view returns (string memory) {
+//         return "https://metadata-url.com/my-metadata";
+//     }
+//}
    
 }

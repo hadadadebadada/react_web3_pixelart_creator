@@ -7,16 +7,17 @@ import TestTailwind from './Roadmap';
 //import TestingJQuery from './TestingJQuery';
 class StartScreen extends Component {
 
+
   
     render() {
         return (
             <div>      
-                                <Home></Home>
-
+                              
+                              <Animations></Animations> 
               {/*   <Animations></Animations> */}
                 <Pixelart></Pixelart>
                 <TestTailwind></TestTailwind>
-
+                <Home></Home>
                 {/* <TestingJQuery></TestingJQuery> */}
             </div>
         );

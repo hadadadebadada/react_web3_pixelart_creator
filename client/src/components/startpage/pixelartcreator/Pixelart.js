@@ -4,7 +4,7 @@ import html2canvas from "html2canvas"
 import OnChainNFTContract from "../../../contracts/OnChainNFT.json"
 import getWeb3 from "../../../getWeb3";
 import styled from "styled-components";
-
+import { createNFTData, getAllNFTs, getNFT } from '../../api';
 const Button2 = styled.button`
   display: inline-block;
   color: palevioletred;
@@ -196,31 +196,13 @@ class Pixelart extends Component {
 
   }
 
-/*   function getInput(){
-    let log2 = document.querySelector("#nameInput");
-    return log2;
-  } */
 
- getInput  = async (e) =>{
-    const elem = e.currentTarget;
-   //
+ getInput  = async () =>{
     let input = await document.getElementById("input").value
-    console.log(elem)
     this.setState({name:input});
-  //  console.log(elem)
-    
-    this.consoleLogState();
   }
 
-  consoleLogState(){
-    console.log(this.state)
-  }
 
-/* 
- setState = ({ image: canvas.toDataURL() }, () => {
-  
-
-  }); */
   mintPicture = async () => {
 
     if (window.ethereum) {
@@ -265,7 +247,9 @@ class Pixelart extends Component {
 
       this.setState({ image: canvas.toDataURL(), name:input }, () => {
         let picString = this.state.image
-       console.log(picString)
+       //console.log(picString)
+
+
 
 
   
@@ -282,15 +266,33 @@ class Pixelart extends Component {
           let name = this.state.name
           let description = ""
 
-        contract.methods.mint(name, description, picString).send({ from: accounts[0], value: 1000000000000000, picString }) // value in wei
+      
+          
+          //console.log(contract.methods.formatTokenURIforOpenSea(name, description, picString).call());
+
+          
+
+          // true --> png für rarible // false -> svg für openseaa
+          const x = true;
+        contract.methods.mint(x, name, description, picString).send({ from: accounts[0], value: 1000000000000000, picString }) // value in wei
         .then(function (receipt) {
           // receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
           alert("picture minted!")
           //safe pic to api
-          //console.log(receipt)
+          console.log(receipt)
+
+          createNFTData(picString);
+
+/*           getNFT(1);
+
+          console.log(getNFT(1)) */
+
+
+
+
         });}catch(error){
-          alert("please connect to metamask")
-          //console.log(error);
+          alert("minting failed")
+          console.log(error);
 
         };
 
