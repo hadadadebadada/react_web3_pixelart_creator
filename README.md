@@ -1,40 +1,79 @@
-# React Truffle Box
+# On-Chain Pixelart NFT Creator
 
-This box comes with everything you need to start using Truffle to write, compile, test, and deploy smart contracts, and interact with them from a React app.
+## Overview
 
-## Installation
+The On-Chain Pixelart NFT Creator allows users to unleash their creativity by drawing pixel art directly in their web browser and minting it as a unique NFT. Unlike traditional NFT platforms that store images off-chain, our tool embeds the artwork's base64-encoded data directly into the blockchain. This method ensures that your artwork is permanently stored on-chain, without relying on external URLs or backlinks that could break or change over time.
 
-First ensure you are in an empty directory.
+## Features
 
-Run the `unbox` command using 1 of 2 ways.
+- **Create Pixel Art:** A user-friendly interface for drawing pixel art, featuring a grid-based canvas with customizable colors.
+- **Blockchain Integration:** Choose your preferred blockchain to mint your artwork as an NFT. Supported blockchains include Ethereum, Polygon, and more.
+- **On-Chain Storage:** Artwork is stored directly on the blockchain as base64-encoded data, ensuring permanence and tamper-proof authenticity.
+- **Mint NFTs:** Easily mint your pixel art as an NFT directly from the browser. No external wallets or complicated steps required.
+- **View and Share:** After minting, view your NFT in your profile and share it with the world.
 
-```sh
-# Install Truffle globally and run `truffle unbox`
-$ npm install -g truffle
-$ truffle unbox react
-```
+## Technology Stack
 
-```sh
-# Alternatively, run `truffle unbox` via npx
-$ npx truffle unbox react
-```
+- **Solidity:** Smart contracts for NFT creation and management.
+- **Truffle:** Development environment for Ethereum, managing the compilation and deployment of smart contracts.
+- **React:** Frontend development for a dynamic and responsive user interface.
+- **JavaScript:** Core programming language for implementing web app logic and blockchain interaction.
+- **Three.js:** For rendering 3D versions of your pixel art, adding an extra dimension to your creations.
 
-Start the react dev server.
+## Getting Started
 
-```sh
-$ cd client
-$ npm start
-  Starting the development server...
-```
+### Prerequisites
 
-From there, follow the instructions on the hosted React app. It will walk you through using Truffle and Ganache to deploy the `SimpleStorage` contract, making calls to it, and sending transactions to change the contract's state.
+- Node.js and npm installed.
+- A web browser with MetaMask or another web3 wallet extension.
 
-## FAQ
+### Setup
 
-- __How do I use this with Ganache (or any other network)?__
+1. **Clone the repository**
 
-  The Truffle project is set to deploy to Ganache by default. If you'd like to change this, it's as easy as modifying the Truffle config file! [Check out our documentation on adding network configurations](https://trufflesuite.com/docs/truffle/reference/configuration/#networks). From there, you can run `truffle migrate` pointed to another network, restart the React dev server, and see the change take place.
+   ```
+   git clone https://github.com/your-repository/on-chain-pixelart-nft-creator.git
+   cd on-chain-pixelart-nft-creator
+   ```
 
-- __Where can I find more resources?__
+2. **Install dependencies**
 
-  This Box is a sweet combo of [Truffle](https://trufflesuite.com) and [Create React App](https://create-react-app.dev). Either one would be a great place to start!
+   ```
+   npm install
+   ```
+
+3. **Compile and migrate smart contracts**
+
+   Ensure you have Truffle installed globally, or you can use npx:
+
+   ```
+   truffle compile
+   truffle migrate --network <your_network>
+   ```
+
+4. **Start the React app**
+
+   ```
+   npm start
+   ```
+
+   This will launch the app in your browser, where you can start creating and minting your pixel art NFTs.
+
+### How to Use
+
+- **Draw:** Use the canvas to create your pixel art. Select colors and use the mouse or touch to paint.
+- **Mint:** Once you're satisfied with your artwork, click the "Mint NFT" button. You'll be prompted to connect your wallet.
+- **Choose Blockchain:** Select the blockchain you wish to mint on and confirm the transaction.
+- **Share:** After minting, share your unique NFT with others directly from the platform.
+
+## Contributions
+
+We welcome contributions and suggestions! Please create issues or pull requests on our GitHub repository.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+---
+
+Create, mint, and share your pixel art with the world like never before. The On-Chain Pixelart NFT Creator offers a unique bridge between creativity and blockchain technology, making your digital art truly immortal.
